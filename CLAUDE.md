@@ -4,6 +4,8 @@
 
 这是江西财经大学自动评教的**正式版仓库**（`wzj1122/jxufe-auto-evaluate`）。
 
+**Beta 仓库已独立到 `E:\Mimo\Project3-beta\`**（`wzj1122/jxufe-auto-evaluate-beta`），与本仓库完全隔离。
+
 | 文件 | 用途 | 能否修改/删除 |
 | :--- | :--- | :--- |
 | `auto-evaluate.user.js` | 油猴脚本主文件 | 可修改（仅版本升级时），不可删除 |
@@ -13,22 +15,23 @@
 | `LICENSE` | MIT 许可证 | 不可修改/删除 |
 | `.github/workflows/sync-to-gitlab.yml` | GitHub → 极狐 GitLab 同步 | 可修改，不可删除 |
 | `.gitlab-ci.yml` | 极狐 GitLab Pages 部署 | 可修改，不可删除 |
+| `CLAUDE.md` | 本规则文件 | 可修改，不可删除 |
 
 ## 发布规则
 
-### 正式发布流程（本仓库）
+### 正式发布流程（本仓库 `E:\Mimo\Project3\`）
 
-1. 将 beta 版本的代码复制到 `auto-evaluate.user.js`
+1. 从 Beta 仓库 `E:\Mimo\Project3-beta\` 复制 `auto-evaluate.user.js`
 2. 修改版本号（如 `1.1.0` → `1.2.0`）
 3. 确保脚本头部包含 Greasy Fork 的 `@updateURL` 和 `@downloadURL`
 4. 更新 `README.md` 的更新日志
 5. Commit + Push 到 main
 6. 创建 GitHub Release（tag 如 `v1.2.0`）
 
-### Beta 测试流程（beta 仓库）
+### Beta 测试流程（`E:\Mimo\Project3-beta\`）
 
-- Beta 仓库 `wzj1122/jxufe-auto-evaluate-beta` 独立于本仓库
-- Beta 版本**不要推送到本仓库**
+- Beta 仓库与正式版仓库**完全独立**，不在同一目录下
+- Beta 版本**不要推送到正式版仓库**
 - Beta 版本脚本头部**不包含** Greasy Fork 的 `@updateURL`/`@downloadURL`
 
 ## 推送规则
