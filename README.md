@@ -13,19 +13,32 @@
 - 自动检测会话过期，等待用户重新登录后继续
 - 页面右上角实时显示评教进度
 
-## 安装
+## 安装指南
 
-1. 安装 [Tampermonkey](https://www.tampermonkey.net/) 浏览器扩展
-2. 点击 Tampermonkey 图标 → 添加新脚本
-3. 将 `auto-evaluate.user.js` 的内容粘贴进去
-4. 保存（Ctrl+S）
-5. 打开 `https://jwxt.jxufe.edu.cn/frame/homes.action*`
-6. 点击 Tampermonkey 图标 → 江西财经大学自动评教 → **▶️ 开始评教**
+> **前置要求**：请确保你的浏览器已安装 Tampermonkey（油猴）扩展。
+> [点击安装 Tampermonkey](https://www.tampermonkey.net/)
 
-## 使用
+### 一键安装（推荐）
 
-- **▶️ 开始评教**：开始自动评教流程
-- **⏹️ 停止**：停止自动评教
+| 平台 | 特点 | 安装链接 |
+| :--- | :--- | :--- |
+| **Greasy Fork** | 首选推荐，全球最大油猴脚本库，支持自动更新 | [Greasy Fork 安装](https://greasyfork.org/zh-CN/scripts/583720) |
+| **极狐 GitLab** | 国内秒开，无需科学上网，适合校园网/国内网络 | [极狐 GitLab 安装](https://jihulab.com/wzj1122-group/jxufe-auto-evaluate/-/raw/main/jxufe-auto-evaluate.user.js) |
+| **GitHub** | 国际同步，获取最新源码和提交记录 | [GitHub 安装](https://github.com/wzj1122/jxufe-auto-evaluate/raw/main/jxufe-auto-evaluate.user.js) |
+
+### 手动安装
+
+1. 点击 Tampermonkey 图标 → 添加新脚本
+2. 将 `auto-evaluate.user.js` 的内容粘贴进去
+3. 保存（Ctrl+S）
+4. 打开 `https://jwxt.jxufe.edu.cn/frame/homes.action*`
+5. 点击 Tampermonkey 图标 → 江西财经大学自动评教 → **开始评教**
+
+### 项目主页与源码
+
+- **Greasy Fork 主页**：[https://greasyfork.org/zh-CN/scripts/583720](https://greasyfork.org/zh-CN/scripts/583720)
+- **极狐 GitLab 主页**：[https://jihulab.com/wzj1122-group/jxufe-auto-evaluate](https://jihulab.com/wzj1122-group/jxufe-auto-evaluate)
+- **GitHub 主页**：[https://github.com/wzj1122/jxufe-auto-evaluate](https://github.com/wzj1122/jxufe-auto-evaluate)
 
 ## 工作原理
 
@@ -38,6 +51,33 @@
 5. 点击暂存按钮保存
 6. 刷新页面，重置 KINGOSOFT 系统状态
 7. 重复以上步骤直到所有评教完成
+
+## 注意事项弹窗机制
+
+评教系统在用户点击"评价"后，会先弹出一个"注意事项"对话框。该弹窗由 KINGOSOFT 的 `openKingoDialog` 创建，内容加载在一个 `dialog-frame` iframe 中：
+
+- 弹窗页面加载后执行 `MyWinOnLoad()`，初始化学年学期、评教轮次等参数
+- 通过 AJAX 请求获取注意事项内容并显示在文本框中
+- 内置一个 **10 秒倒计时**：倒计时期间"我已阅读"按钮处于禁用状态，显示 `Xs`
+- 倒计时结束后按钮文本变为"我已阅读"，并解除禁用
+- 用户点击后触发 `doClose()`，调用 `kingoDialog.closeDialog()` 关闭弹窗，进入评教表单
+
+脚本通过递归搜索所有 `iframe`/`frame` 元素查找 `#btnClose` 按钮，检测到后自动等待并点击。
+
+## 评教列表页面结构
+
+评教列表页面（`DataTable.jsp`）以表格形式展示所有待评教课程，嵌套在 `frmDesk` → `frame_1` → `frmReport` 三层 iframe 中：
+
+| 列名 | DOM ID 模式 | 说明 |
+|------|------------|------|
+| 序号 | `trN` (N=0,1,2...) | 每行的唯一标识 |
+| 课程/环节 | `trN_kc` | 课程名称 |
+| 教师 | `trN_js` | 教师姓名 |
+| 评价类型 | `trN_pjlb` | 理论/实践等 |
+| 评价得分 | `trN_pjdf` | 已评教时显示分数，未评教时为空 |
+| 操作 | `trN_wjdc` | 含"评价"和"删除暂存"链接 |
+
+脚本遍历所有 `<tr id='trN'>` 行，检查 `_pjdf` 列是否为空来判断是否未评教，查找"评价"链接的 `onclick` 属性调用 `parent.jxpj(...)` 来确认可评教状态。已暂存的行会额外出现"删除暂存"按钮（`onclick` 包含 `deltwjxpj`）。
 
 ## 历次迭代
 
@@ -140,6 +180,10 @@
 6. 本项目中涉及的 KINGOSOFT 教务系统相关商标、名称和技术标识归其各自所有者所有，本项目与其无任何关联或授权关系。
 
 7. 如有任何问题或侵权争议，请联系作者邮箱：**18293592881@163.com**，我们将在收到通知后及时处理。
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/chart?repos=wzj1122-group/jxufe-auto-evaluate&type=date&logscale&legend=top-left)](https://www.star-history.com/?repos=wzj1122-group%2Fjxufe-auto-evaluate&type=date&logscale=&legend=top-left)
 
 ## 许可证
 
