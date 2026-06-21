@@ -22,8 +22,8 @@
 
 | 平台 | 特点 | 安装链接 |
 | :--- | :--- | :--- |
-| **Greasy Fork** | 首选推荐，全球最大油猴脚本库，支持自动更新 | [Greasy Fork 安装](https://greasyfork.org/scripts/583720-%E6%B1%9F%E8%A5%BF%E8%B4%A2%E7%BB%8F%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E8%AF%84%E6%95%99.user.js) |
-| **极狐 GitLab** | 国内秒开，无需科学上网，适合校园网/国内网络 | [极狐 GitLab 安装](https://jihulab.com/wzj1122-group/jxufe-auto-evaluate/-/raw/main/auto-evaluate.user.js) |
+| **Greasy Fork** | 首选推荐，全球最大油猴脚本库，支持自动更新 | [Greasy Fork 安装](https://update.greasyfork.org/scripts/583720/%E6%B1%9F%E8%A5%BF%E8%B4%A2%E7%BB%8F%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E8%AF%84%E6%95%99.user.js) |
+| **极狐 GitLab** | 国内秒开，无需科学上网，适合校园网/国内网络 | [极狐 GitLab 安装](https://jihulab.com/wzj1122-group/jxufe-auto-evaluate/-/raw/main/auto-evaluate.user.js?ref_type=heads&inline=false) |
 | **GitHub** | 国际同步，获取最新源码和提交记录 | [GitHub 安装](https://github.com/wzj1122/jxufe-auto-evaluate/raw/main/auto-evaluate.user.js) |
 
 ### 手动安装
