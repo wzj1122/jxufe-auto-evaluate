@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         江西财经大学自动评教
 // @namespace    https://github.com/wzj1122/jxufe-auto-evaluate
-// @version      1.0.1
+// @version      1.0.2
 // @description  江西财经大学 KINGOSOFT 教务系统自动评教脚本，每次评教后自动刷新页面
 // @author       MiMo
 // @match        https://jwxt.jxufe.edu.cn/frame/homes.action*
