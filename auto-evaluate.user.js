@@ -6,6 +6,7 @@
 // @author       MiMo
 // @match        https://jwxt.jxufe.edu.cn/frame/homes.action*
 // @icon         https://www.jxufe.edu.cn/statics/jxcjdx/images/favicon.png
+// @license      MIT
 // @grant        GM_registerMenuCommand
 // @grant        GM_notification
 // @grant        GM_setValue
