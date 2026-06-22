@@ -9,8 +9,8 @@
 // @license      MIT
 // @homepage     https://github.com/wzj1122/jxufe-auto-evaluate
 // @supportURL   https://github.com/wzj1122/jxufe-auto-evaluate/issues
-// @updateURL    https://greasyfork.org/scripts/583720-%E6%B1%9F%E8%A5%BF%E8%B4%A2%E7%BB%8F%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E8%AF%84%E6%95%99.meta.js
-// @downloadURL  https://greasyfork.org/scripts/583720-%E6%B1%9F%E8%A5%BF%E8%B4%A2%E7%BB%8F%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E8%AF%84%E6%95%99.user.js
+// @updateURL    https://jxufe-auto-evaluate.pages.dev/auto-evaluate.user.js
+// @downloadURL  https://jxufe-auto-evaluate.pages.dev/auto-evaluate.user.js
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @run-at       document-idle
