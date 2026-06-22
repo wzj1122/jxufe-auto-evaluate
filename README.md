@@ -18,6 +18,8 @@
 > **前置要求**：请确保你的浏览器已安装 Tampermonkey（油猴）扩展。
 > [点击安装 Tampermonkey](https://www.tampermonkey.net/)
 
+> **⚠️ 重要提示**：脚本运行需要开启浏览器扩展的开发者模式。具体操作：打开浏览器扩展管理页面（如 Chrome 地址栏输入 `chrome://extensions/`），找到 Tampermonkey 扩展，开启右上角的「开发者模式」开关。
+
 ### 一键安装（推荐）
 
 | 平台 | 特点 | 安装链接 |
