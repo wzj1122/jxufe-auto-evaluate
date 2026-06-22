@@ -68,7 +68,7 @@
             + '#ae-panel .bc{background:#9b59b6;color:#fff}'
             + '#ae-panel .bm{background:rgba(255,255,255,.2);color:#fff;font-size:11px;padding:4px 10px}'
             + '#ae-panel .bm.a{background:rgba(255,255,255,.4)}'
-            +                 '#ae-panel .r{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}'
+            + '#ae-panel .r{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}'
             + '</style>'
             + '<div class="t">自动评教</div>'
             + '<div class="s" id="ae-s">就绪</div>'
@@ -286,7 +286,7 @@
         setStatus('启动中...');
 
         function checkLogin() {
-                if (location.href.indexOf('login.action') >= 0) {
+            if (location.href.indexOf('login.action') >= 0) {
                 logW('检测到登录页面，等待重新登录...');
                 setStatus('会话过期，请重新登录');
                 GM_setValue('pending_eval', false);
