@@ -204,15 +204,17 @@
         var total = getUnfinishedCount();
         logI('[' + total + ' 剩余] ' + item.teacher + ' - ' + item.course);
         setStatus('[' + total + ' 剩余] ' + item.course);
+        pauseNotice();
         item.btn.click();
         return wait(2000).then(function () { return waitForForm(); }).then(function (doc) {
             if (!doc) { logW('表单加载超时'); return 'retry'; }
             fillForm(doc);
             return saveAndWait(doc);
         }).then(function (ok) {
-            if (ok === false) { logW('保存失败'); return 'retry'; }
+            if (ok === false) { logW('保存失败'); resumeNotice(); return 'retry'; }
             logI('完成: ' + item.teacher);
             closeDialog();
+            resumeNotice();
             return wait(2000).then(function () { return true; });
         });
     }
@@ -223,21 +225,24 @@
         var total = getUnfinishedCount();
         logI('[' + total + ' 剩余] ' + item.teacher + ' - ' + item.course);
         setStatus('[' + total + ' 剩余] ' + item.course);
+        pauseNotice();
         item.btn.click();
         return wait(2000).then(function () { return waitForForm(); }).then(function (doc) {
             if (!doc) { logW('表单加载超时'); return 'retry'; }
             fillForm(doc);
             return saveAndWait(doc);
         }).then(function (ok) {
-            if (ok === false) { logW('保存失败'); return 'retry'; }
+            if (ok === false) { logW('保存失败'); resumeNotice(); return 'retry'; }
             logI('完成: ' + item.teacher);
             var remaining = total - 1;
             if (remaining > 0) {
                 setStatus('完成，剩余 ' + remaining + ' 项，刷新中...');
                 GM_setValue('pending_eval', true);
                 GM_setValue('pending_eval_time', Date.now());
+                resumeNotice();
                 return wait(3000).then(function () { window.location.reload(); return 'reloaded'; });
             }
+            resumeNotice();
             return true;
         });
     }
@@ -454,6 +459,10 @@
     var _noticeTimer = null;
     var _lastNoticeBtn = null;
     var _noticeInterval = null;
+    var _noticePaused = false;
+
+    function pauseNotice() { _noticePaused = true; }
+    function resumeNotice() { _noticePaused = false; }
 
     function findBtnCloseDeep(doc, depth) {
         if (!doc || depth > 3) return null;
@@ -478,6 +487,7 @@
     (function autoNoticePoll() {
         logI('注意事项自动检测已启动');
         _noticeInterval = setInterval(function () {
+            if (_noticePaused) return;
             var btn = findBtnCloseDeep(document, 0);
             if (!btn || btn.disabled) {
                 _lastNoticeBtn = null;
