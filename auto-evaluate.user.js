@@ -3,7 +3,7 @@
 // @namespace    https://github.com/wzj1122/jxufe-auto-evaluate
 // @version      1.1.0
 // @description  江西财经大学 KINGOSOFT 教务系统自动评教脚本
-// @author       MiMo
+// @author       Pkh + Mimo
 // @match        https://jwxt.jxufe.edu.cn/frame/homes.action*
 // @icon         https://www.jxufe.edu.cn/statics/jxcjdx/images/favicon.png
 // @license      MIT
